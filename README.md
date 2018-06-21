@@ -5,6 +5,10 @@ To remedy this issue, I recreated it from scratch only knowing to store the valu
 
 In your main.c file or wherever you'd like, make sure that you define `BUFFERS_IMPLEMENTATION`
 
+## Installation
+Run `make install` to install `buffers.h` to `/usr/local/include`
+Run `make uninstall` to delete `/usr/local/include/buffers.h`
+
 ## Functions
 
 `buff_struct(buff)` - Returns a struct of type `_buff`, has `.len` and `.max_len`
