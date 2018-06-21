@@ -7,6 +7,7 @@ In your main.c file or wherever you'd like, make sure that you define `BUFFERS_I
 
 ## Installation
 Run `make install` to install `buffers.h` to `/usr/local/include`
+
 Run `make uninstall` to delete `/usr/local/include/buffers.h`
 
 ## Functions
