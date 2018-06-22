@@ -22,8 +22,9 @@ typedef struct _buff
     memmove(x + 1, x, (buff_struct(x).len - 1) * sizeof(d)); \
     x[0] = d
 
-#define buff_remove(x, i)                                 \
-    memcpy(x + i, x + i + 1, buff_struct(x).len - i - 1); \
+#define buff_remove(x, i)                                  \
+    for (size_t ii = i; ii < buff_struct(x).len - 1; ii++) \
+        x[ii] = x[ii + 1];                                 \
     buff_struct(x).len--
 
 // iterate over buff where (x) is the index variable, and (b) is the buffer
