@@ -38,6 +38,8 @@ void buff_destroy(void *inbuff);
 
 void _buff_extend(void **inbuff, size_t dt_size);
 
+#define BUFFER(x) x *
+
 #ifdef BUFFERS_IMPLEMENTATION
 
 void *buff_new(size_t dt_size, size_t max_len)
@@ -58,9 +60,11 @@ void _buff_extend(void **inbuff, size_t dt_size)
     if (buff_struct(*inbuff).len >= buff_struct(*inbuff).max_len)
     {
         void *tmp = *inbuff;
-        *inbuff = buff_new(dt_size, buff_struct(tmp).max_len * 2);
-        memcpy(*inbuff, tmp, buff_struct(tmp).len * dt_size);
+        //*inbuff = buff_new(dt_size, buff_struct(tmp).max_len * 2);
+        *inbuff = (_buff *)malloc(sizeof(_buff) + dt_size * buff_struct(tmp).max_len * 2) + 1;
+        buff_struct(*inbuff).max_len = buff_struct(tmp).max_len * 2;
         buff_struct(*inbuff).len = buff_struct(tmp).len + 1;
+        memcpy(*inbuff, tmp, buff_struct(tmp).len * dt_size);
         buff_destroy(tmp);
     }
     else
